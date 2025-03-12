@@ -1,5 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-def saludar(request):
-    return HttpResponse("Hola desde Django!")
+def home(request):
+    return render(request, 'core/home.html')
+
+def detalles(request):
+    return render(request, 'core/detalles.html')
