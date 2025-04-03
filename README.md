@@ -1,49 +1,55 @@
+# **CG Peripherals - Proyecto Django**
 
-# Sistema de Gestión Escolar
+![CG Peripherals Banner](https://i.postimg.cc/VYd3cq2L/assets-banner2-CG.jpg)
 
-Sistema básico de gestión escolar desarrollado con Django. Cumple con los requisitos mínimos de la consigna, enfocándose en el patrón MVT y la herencia de plantillas HTML.
+## **Descripción del Proyecto**
 
-## Características Principales
+**CG Peripherals** es una aplicación web desarrollada con Django que permite gestionar productos y categorías relacionados con periféricos de gaming. La aplicación incluye funcionalidades como:
 
-- **Modelos**:
+- **Gestión de Categorías**: Crear, editar, listar y eliminar categorías.
+- **Gestión de Productos**: Crear, editar, listar, ver detalles y eliminar productos.
+- **Autenticación de Usuarios**: Registro, inicio de sesión y cierre de sesión de usuarios.
+- **Interfaz Responsiva**: Diseño limpio y moderno utilizando Bootstrap 5.
+- **Imágenes Online**: Los productos pueden tener imágenes vinculadas desde URLs externas.
 
-  - `Alumno`: Representa estudiantes con datos básicos y materias inscritas.
-  - `Materia`: Representa asignaturas con descripción y profesor asignado.
-  - `Profesor`: Representa docentes con datos básicos.
-- **Herencia de Plantillas**:Usa una plantilla base (`base.html`) para mantener consistencia visual entre las páginas.
-- **Vistas Simples**:
+La aplicación está diseñada para ser escalable y modular, permitiendo futuras mejoras y la integración de nuevas funcionalidades.
 
-  - **Inicio (`home`)**: Página principal del sistema.
-  - **Detalles (`detalles`)**: Información adicional sobre el sistema.
-- **Base de Datos**:
-  SQLite como motor de base de datos. Los modelos están definidos pero no manipulados directamente.
+## **Tecnologías Utilizadas**
 
-## Estructura del Proyecto
+- **Backend**: Django 5.1.6
+- **Frontend**: HTML, CSS (Bootstrap 5), JavaScript
+- **Base de Datos**: SQLite
+- **Autenticación**: Sistema de autenticación integrado de Django
+- **Despliegue**: Compatible con entornos de desarrollo y producción
 
+## **Estructura del Proyecto**
+
+El proyecto sigue una estructura modular organizada en aplicaciones Django:
 ```
-src/
-├── config/          # Configuración global del proyecto
-│   ├── settings.py  # Configuración de Django
-│   ├── urls.py      # Rutas del proyecto
-│   └── wsgi.py      # Configuración WSGI
-├── core/            # Aplicación principal
-│   ├── models.py    # Definición de los modelos
-│   ├── views.py     # Vistas del sistema
-│   └── templates/   # Plantillas HTML
-│       ├── base.html
-│       ├── home.html
-│       └── detalles.html
-db.sqlite3           # Base de datos SQLite
-manage.py            # Archivo principal para ejecutar comandos Django
+Projects-Python/
+├── src/
+│   ├── config/ # Configuración global del proyecto Django
+│   ├── core/ # Aplicación principal (autenticación, páginas generales)
+│   └── producto/ # Aplicación para gestión de productos y categorías
+├── manage.py # Script principal para ejecutar comandos Django
+├── requirements.txt # Dependencias del proyecto
+└── README.md # Documentación del proyecto (este archivo)
 ```
 
+### Comandos Opcionales y de Ejecución:
+- virtualenv venv
+- venv\\\Scripts\\\activate
+- pip install -r requirements.txt
+- python manage.py makemigrations
+- python manage.py migrate
+- python manage.py createsuperuser
+- python manage.py runserver
 
-## Tecnologías
+### Repositorio del Proyecto:
+```bash
+   https://github.com/MateoSB1/Proyecto-Final-PYTHON
+```
 
-- **Django**: Framework web utilizado.
-- **SQLite**: Base de datos ligera.
-- **HTML**: Plantillas para la interfaz.
+---
 
-## Propósito
-
-Proyecto inicial para un sistema de gestión escolar, buenas prácticas de organización y estructura en Django.
+_🧑‍💻 Autor Mateo Brancato – Est. Desarrollador Full Stack | **LinkedIn**: https://www.linkedin.com/in/mateobrancatosb1/ | **GitHub**: https://github.com/MateoSB1_
