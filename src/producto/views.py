@@ -1,16 +1,17 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
-from django.contrib.auth.decorators import login_required, method_decorator
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 from . import forms, models
+
 
 def index(request):
     return render(request, "producto/index.html")
 
 
 # CATEGORIA - LISTVIEW
+
+
 def categoria_list(request):
     busqueda = request.GET.get("busqueda")
     if busqueda:
@@ -22,7 +23,8 @@ def categoria_list(request):
 
 
 # CATEGORIA - CREATEVIEW
-@login_required(login_url=reverse_lazy("core:login"))
+
+
 def categoria_create(request):
     if request.method == "GET":
         form = forms.CategoriaForm()
@@ -35,7 +37,8 @@ def categoria_create(request):
 
 
 # CATEGORIA - UPDATEVIEW
-@login_required(login_url=reverse_lazy("core:login"))
+
+
 def categoria_update(request, pk: int):
     query = models.Categoria.objects.get(id=pk)
     if request.method == "GET":
@@ -49,7 +52,8 @@ def categoria_update(request, pk: int):
 
 
 # CATEGORIA - DELETEVIEW
-@login_required(login_url=reverse_lazy("core:login"))
+
+
 def categoria_delete(request, pk: int):
     query = models.Categoria.objects.get(id=pk)
     if request.method == "POST":
@@ -72,17 +76,17 @@ class ProductoListView(ListView):
             queryset = models.Producto.objects.all()
         return queryset
 
-class ProductoCreateView(LoginRequiredMixin, CreateView):
-    model = models.Producto
-    form_class = forms.ProductoForm
-    success_url = reverse_lazy("producto:producto_list")
-    login_url = reverse_lazy("core:login")
 
-class ProductoUpdateView(LoginRequiredMixin, UpdateView):
+class ProductoCreateView(CreateView):
     model = models.Producto
     form_class = forms.ProductoForm
     success_url = reverse_lazy("producto:producto_list")
-    login_url = reverse_lazy("core:login")
+
+
+class ProductoUpdateView(UpdateView):
+    model = models.Producto
+    form_class = forms.ProductoForm
+    success_url = reverse_lazy("producto:producto_list")
 
 
 class ProductoDetailView(DetailView):
@@ -92,4 +96,3 @@ class ProductoDetailView(DetailView):
 class ProductoDeleteView(DeleteView):
     model = models.Producto
     success_url = reverse_lazy("producto:producto_list")
-    login_url = reverse_lazy("core:login")

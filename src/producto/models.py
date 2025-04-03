@@ -12,7 +12,7 @@ class Producto(models.Model):
     descripcion = models.TextField(null=True, blank=True)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField()
-    imagen_url = models.URLField(blank=True, null=True)
+    imagen_url = models.URLField(blank=True, null=True)  # Campo para la URL de la imagen
 
     def __str__(self) -> str:
         if self.categoria:

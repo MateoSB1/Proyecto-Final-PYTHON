@@ -10,6 +10,9 @@ urlpatterns = [
     path("categoria/create/", views.categoria_create, name="categoria_create"),
     path("categoria/update/<int:pk>", views.categoria_update, name="categoria_update"),
     path("categoria/delete/<int:pk>", views.categoria_delete, name="categoria_delete"),
+]
+
+urlpatterns += [
     path("producto/list/", views.ProductoListView.as_view(), name="producto_list"),
     path("producto/create/", views.ProductoCreateView.as_view(), name="producto_create"),
     path("producto/update/<int:pk>", views.ProductoUpdateView.as_view(), name="producto_update"),
