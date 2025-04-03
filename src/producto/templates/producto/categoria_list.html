@@ -1,0 +1,80 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <!-- Título principal -->
+            <h2 class="text-center mb-4" style="color: #532f97;">Gestión de Categorías</h2>
+
+            <!-- Barra de búsqueda -->
+            <form method="get" class="mb-4">
+                <div class="input-group">
+                    <input type="text" name="busqueda" class="form-control" placeholder="Buscar categoría..." aria-label="Buscar categoría">
+                    <button class="btn btn-outline-secondary" type="submit" style="border-color: #532f97; color: #532f97;">
+                        <i class="bi bi-search"></i> Buscar
+                    </button>
+                </div>
+            </form>
+
+            <!-- Botón Crear Categoría -->
+            <div class="text-end mb-4">
+                <a href="{% url 'producto:categoria_create' %}" 
+                   class="btn text-white" 
+                   style="background: linear-gradient(to right, #532f97, #8a5dcc);">
+                    <i class="bi bi-plus-circle me-2"></i> Crear Categoría
+                </a>
+            </div>
+
+            <!-- Tabla de categorías -->
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col" class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for categoria in object_list %}
+                            <tr>
+                                <td>{{ categoria.nombre }}</td>
+                                <td class="text-center">
+                                    <div class="btn-group" role="group" aria-label="Acciones de categoría">
+                                        <!-- Botón Editar -->
+                                        <a href="{% url 'producto:categoria_update' categoria.id %}" 
+                                           class="btn btn-sm btn-warning text-white mx-1" 
+                                           title="Editar">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </a>
+                                        <!-- Botón Eliminar -->
+                                        <a href="{% url 'producto:categoria_delete' categoria.id %}" 
+                                           class="btn btn-sm btn-danger mx-1" 
+                                           title="Eliminar">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="2" class="text-center text-muted">
+                                    No hay categorías registradas
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Botón Volver -->
+            <div class="text-center mt-4">
+                <a href="{% url 'producto:index' %}" 
+                   class="btn btn-outline-secondary" 
+                   style="border-color: #532f97; color: #532f97;">
+                    <i class="bi bi-arrow-left me-2"></i> Volver
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,64 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Tarjeta principal -->
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <!-- Título -->
+                    <h2 class="card-title mb-4" style="color: #532f97;">Detalle del Producto</h2>
+                    
+                    <!-- Imagen del producto -->
+                    {% if object.imagen_url %}
+                        <img src="{{ object.imagen_url }}" alt="{{ object.nombre }}" class="img-fluid mb-3" style="max-width: 300px;">
+                    {% endif %}
+                    
+                    <!-- Detalles del producto -->
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Categoría:</strong> 
+                            {% if object.categoria %}
+                                {{ object.categoria }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Nombre:</strong> {{ object.nombre }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Descripción:</strong>
+                            {% if object.descripcion %}
+                                {{ object.descripcion }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Precio:</strong> ${{ object.precio }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Stock:</strong>
+                            {% if object.stock > 0 %}
+                                <span class="badge rounded-pill text-bg-success">{{ object.stock }}</span>
+                            {% else %}
+                                <span class="badge rounded-pill text-bg-danger">Sin stock</span>
+                            {% endif %}
+                        </li>
+                    </ul>
+                    
+                    <!-- Botón Volver -->
+                    <div class="text-center mt-4">
+                        <a href="{% url 'producto:producto_list' %}" 
+                           class="btn btn-outline-secondary" 
+                           style="border-color: #532f97; color: #532f97;">
+                            <i class="bi bi-arrow-left me-2"></i> Volver
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

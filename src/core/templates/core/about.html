@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center align-items-center gy-4">
+        <div class="col-md-4 text-center">
+            <img src="https://avatars.githubusercontent.com/u/146895600?s=400&u=0467a890ba47b06fe37121a64d27d275006bd4f7&v=4"
+                 alt="Foto de perfil" 
+                 class="img-fluid rounded-circle border border-3 border-secondary shadow" 
+                 style="max-width:200px;">
+        </div>
+        
+        <div class="col-md-8">
+            <h1 class="display-4 fw-bold text-body">Acerca de mí</h1>
+            <h2 class="h3 fw-light text-body">Mateo Brancato</h2>
+            
+            <div class="mt-4">
+                <p class="lead">Est. de Ingeniería en Sistemas & Est. de Desarrollo Full Stack</p>
+                
+                <a href="https://www.linkedin.com/in/mateobrancatosb1/" 
+                   target="_blank" 
+                   class="btn btn-outline-light btn-lg"
+                   style="background: linear-gradient(to top, #532f97, #8a5dcc);">
+                    <i class="bi bi-linkedin me-2"></i>Ver perfil en LinkedIn
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,62 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+
+    <!-- Heading Row -->
+    <div class="row gx-4 gx-lg-5 align-items-center my-5">
+        <div class="col-lg-7">
+            <img class="img-fluid rounded mb-4 mb-lg-0" src="https://i.postimg.cc/VYd3cq2L/assets-banner2-CG.jpg" alt="..." />
+        </div>
+        <div class="col-lg-5">
+            <h1 class="font-weight-light">CG Peripherals</h1>
+            <p>CG Peripherals redefine la experiencia gamer con periféricos de vanguardia que fusionan precisión, estilo y tecnología. Cada pieza es una extensión de tu destreza, diseñada para potenciar tu juego al máximo. No solo juegas, dominas. ¡Eleva tu setup con CG Peripherals!</p>
+            <a class="btn text-white bg-secondary bg-gradient" href="{% url 'core:about' %}">Información</a>
+        </div>
+    </div>
+
+    <a href="{% url 'producto:producto_create' %}" style="text-decoration: none;">
+        <div class="card text-white my-5 py-1 text-center" style="background: linear-gradient(to top, #532f97, #8a5dcc);">
+            <div class="card-body">
+                <p class="m-0"><strong>Publicar nuevo producto en CG Peripherals</strong></p>
+            </div>
+        </div>
+    </a>
+
+    <!-- Content Row -->
+    <div class="row gx-4 gx-lg-5">
+        {% if productos %}
+            {% for producto in productos %}
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <!-- Imagen del producto -->
+                        {% if producto.imagen_url %}
+                        <img src="{{ producto.imagen_url }}" class="card-img-top" alt="{{ producto.nombre }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h2 class="card-title">{{ producto.nombre }}</h2>
+                            <p class="card-text">{{ producto.descripcion|truncatechars:50 }}</p>
+                            <p class="card-text"><strong>${{ producto.precio }}</strong></p>
+                            <p class="card-text">
+                                {% if producto.stock > 0 %}
+                                    <span class="badge bg-success">En stock ({{ producto.stock }})</span>
+                                {% else %}
+                                    <span class="badge bg-danger">Sin stock</span>
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{% url 'producto:producto_detail' producto.id %}" class="btn text-white bg-secondary bg-gradient">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12 text-center">
+                <p>No hay productos disponibles.</p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock content %}

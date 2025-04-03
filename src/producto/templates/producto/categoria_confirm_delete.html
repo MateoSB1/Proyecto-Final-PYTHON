@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <!-- Tarjeta principal -->
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <!-- Título -->
+                    <h2 class="card-title text-danger mb-4">Eliminar Categoría</h2>
+                    
+                    <!-- Mensaje de confirmación -->
+                    <p class="card-text text-muted">
+                        ¿Está seguro que desea eliminar la categoría <strong>"{{ object }}"</strong>?
+                    </p>
+
+                    <!-- Formulario de eliminación -->
+                    <form method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" 
+                                class="btn btn-danger rounded-pill px-4 me-3" 
+                                style="background: linear-gradient(to right, #532f97, #8a5dcc); border: none;">
+                            <i class="bi bi-trash-fill me-2"></i> Sí, eliminar
+                        </button>
+                    </form>
+
+                    <!-- Botón para cancelar -->
+                    <a href="{% url 'producto:categoria_list' %}" 
+                       class="btn btn-outline-secondary rounded-pill px-4" 
+                       style="border-color: #532f97; color: #532f97;">
+                        <i class="bi bi-arrow-left me-2"></i> Volver
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

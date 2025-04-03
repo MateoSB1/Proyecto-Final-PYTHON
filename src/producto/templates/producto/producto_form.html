@@ -1,0 +1,82 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <!-- Tarjeta principal -->
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <!-- Título dinámico -->
+                    {% if form.instance.pk %}
+                        <h2 class="card-title mb-4" style="color: #532f97;">Editar Producto</h2>
+                    {% else %}
+                        <h2 class="card-title mb-4" style="color: #532f97;">Crear Producto</h2>
+                    {% endif %}
+
+                    <!-- Formulario -->
+                    <form method="post" class="text-start">
+                        {% csrf_token %}
+                        
+                        <!-- Campo de categoría -->
+                        <div class="mb-3">
+                            <label for="{{ form.categoria.id_for_label }}" class="form-label">Categoría</label>
+                            {{ form.categoria }}
+                            <small class="text-danger">{{ form.categoria.errors }}</small>
+                        </div>
+
+                        <!-- Campo de nombre -->
+                        <div class="mb-3">
+                            <label for="{{ form.nombre.id_for_label }}" class="form-label">Nombre</label>
+                            {{ form.nombre }}
+                            <small class="text-danger">{{ form.nombre.errors }}</small>
+                        </div>
+
+                        <!-- Campo de descripción -->
+                        <div class="mb-3">
+                            <label for="{{ form.descripcion.id_for_label }}" class="form-label">Descripción</label>
+                            {{ form.descripcion }}
+                            <small class="text-danger">{{ form.descripcion.errors }}</small>
+                        </div>
+
+                        <!-- Campo de imagen -->
+                        <div class="mb-3">
+                            <label for="{{ form.imagen_url.id_for_label }}" class="form-label">Enlace de la Imagen</label>
+                            {{ form.imagen_url }}
+                            <small class="text-danger">{{ form.imagen_url.errors }}</small>
+                            <small class="text-muted d-block mt-1">Pega el enlace de la imagen (ejemplo: https://example.com/image.jpg).</small>
+                        </div>
+                        
+                        <!-- Campo de precio -->
+                        <div class="mb-3">
+                            <label for="{{ form.precio.id_for_label }}" class="form-label">Precio</label>
+                            {{ form.precio }}
+                            <small class="text-danger">{{ form.precio.errors }}</small>
+                        </div>
+
+                        <!-- Campo de stock -->
+                        <div class="mb-3">
+                            <label for="{{ form.stock.id_for_label }}" class="form-label">Stock</label>
+                            {{ form.stock }}
+                            <small class="text-danger">{{ form.stock.errors }}</small>
+                        </div>
+
+                        <!-- Botón de envío -->
+                        <button type="submit" 
+                                class="btn w-100 mt-4" 
+                                style="background: linear-gradient(to right, #532f97, #8a5dcc); color: white; border: none;">
+                            <i class="bi bi-save me-2"></i> Guardar
+                        </button>
+                    </form>
+
+                    <!-- Botón para cancelar -->
+                    <a href="{% url 'producto:producto_list' %}" 
+                       class="btn btn-outline-secondary w-100 mt-3" 
+                       style="border-color: #532f97; color: #532f97;">
+                        <i class="bi bi-arrow-left me-2"></i> Volver
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

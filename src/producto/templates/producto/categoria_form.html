@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <!-- Tarjeta principal -->
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <!-- Título dinámico -->
+                    {% if form.instance.pk %}
+                        <h2 class="card-title mb-4" style="color: #532f97;">Editar Categoría</h2>
+                    {% else %}
+                        <h2 class="card-title mb-4" style="color: #532f97;">Crear Categoría</h2>
+                    {% endif %}
+
+                    <!-- Formulario -->
+                    <form method="post" class="text-start">
+                        {% csrf_token %}
+                        
+                        <!-- Campo de nombre -->
+                        <div class="mb-3">
+                            <label for="{{ form.nombre.id_for_label }}" class="form-label">Nombre de la Categoría</label>
+                            {{ form.nombre }}
+                            <small class="text-danger">{{ form.nombre.errors }}</small>
+                        </div>
+
+                        <!-- Botón de envío -->
+                        <button type="submit" 
+                                class="btn w-100 mt-4" 
+                                style="background: linear-gradient(to right, #532f97, #8a5dcc); color: white; border: none;">
+                            <i class="bi bi-save me-2"></i> Guardar
+                        </button>
+                    </form>
+
+                    <!-- Enlace de regreso -->
+                    <a href="{% url 'producto:index' %}" 
+                       class="btn btn-outline-secondary w-100 mt-3" 
+                       style="border-color: #532f97; color: #532f97;">
+                        <i class="bi bi-arrow-left me-2"></i> Volver
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
